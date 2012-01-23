@@ -1,6 +1,8 @@
 
-[vScroller](http://dev.rogeriolino.com/js/vscroller.html) | Vertical Scroller Plugin for jQuery
+[![](https://github.com/rogeriolino/vscroller/raw/master/vscroller.png) ](http://dev.rogeriolino.com/js/vscroller.html "vScroller")
 ================================
+
+Vertical Scroller Plugin for jQuery 1.7+
 
 
 Author
