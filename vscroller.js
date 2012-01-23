@@ -94,12 +94,11 @@
 	            }
 	            
 	            var y = pxToInt(self.inner.css('top'));
-	            if ((delta > 0 && y >= 0) || (delta < 0 && y <= self.maxHeight)) {
-	                return;
+	            if (!(delta > 0 && y >= 0) && !(delta < 0 && y <= self.maxHeight)) {
+	                y += delta * opts.delta;
+    	            self.scrollTo(y);
 	            }
-	            
-	            y += delta * opts.delta;
-	            self.scrollTo(y);
+            	return false;
             });
             
             self.scrollTo = function(y) {
