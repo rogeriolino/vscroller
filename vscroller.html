@@ -21,8 +21,11 @@ $(document).ready(function() {
     $('#sidebar .scroller').vScroller({
         height: 600,
         onScroll: function(args) {
-            if (args.pct >= 99) {
-                alert('Thanks for read me');
+            if (args.pct >= 95) {
+                $('#thanks').show('ease');
+            }
+            if (args.pct < 90) {
+                $('#thanks').hide('ease');
             }
         }
     });
@@ -60,14 +63,16 @@ a:hover { text-decoration: underline; }
     padding: 5px 40px;
 }
 
-#body .news {
+#body .scroller {
     padding: 10px;
-    border-radius: 12px;
-    moz-border-radius: 12px;
     background-color: #f1f1f1;
 }
 
-#body .news p {
+#body .scroller h3 {
+    padding: 5px 10px;
+}
+
+#body .scroller p {
     text-align: justify;
     padding: 5px 10px;
 }
@@ -113,6 +118,29 @@ a:hover { text-decoration: underline; }
     color: #666666;
 }
 
+#thanks {
+    top: 50%;
+    left: 50%;
+    width: 200px;
+    height: 40px;
+    margin: -20px 0 0 -100px;
+    background-color: rgba(0, 0, 0, .6);
+    position: fixed;
+    display: none;
+}
+
+#thanks p {
+    color: yellow;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px;
+}
+
+.radius {
+    border-radius: 12px;
+    moz-border-radius: 12px;
+}
+
 </style>
 </head>
 <body>
@@ -121,7 +149,8 @@ a:hover { text-decoration: underline; }
     </div>
     <div id="body">
         <div id="sidebar">
-            <div class="news scroller">
+            <div class="scroller radius">
+                <h3>News</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at consectetur velit. Quisque at diam urna. Maecenas sed tortor eget est sagittis laoreet. Nullam sit amet nibh lorem. Praesent ac diam et magna lobortis ornare. Nulla facilisi. Phasellus mi odio, imperdiet vitae vulputate elementum, bibendum id mauris. Nam quis congue augue. Donec faucibus vestibulum magna, vel scelerisque tortor iaculis id. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                 <p>Maecenas a nibh lectus, id semper augue. Aenean venenatis tincidunt commodo. Ut convallis ligula et urna ornare ultricies. Donec ut lacinia odio. Praesent vulputate turpis libero. Mauris tincidunt ante arcu. Nulla facilisi. Nullam quis turpis leo, feugiat laoreet lectus. Curabitur massa leo, dignissim id hendrerit nec, aliquam ac massa. Suspendisse potenti. Pellentesque ornare, dui vitae interdum porttitor, leo quam eleifend diam, vitae dictum lacus sapien ut lacus. Integer sed eros arcu.</p>
                 <p>Aenean porttitor pellentesque purus, sed pharetra purus commodo nec. Fusce varius nisi vel enim varius pellentesque. Maecenas vitae enim a orci euismod dictum. Donec at ligula dolor, in sodales diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae diam tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse consectetur hendrerit mollis.</p>
@@ -130,7 +159,8 @@ a:hover { text-decoration: underline; }
             </div>
         </div>
         <div id="content">
-            <div class="news scroller">
+            <div class="scroller radius">
+                <h3>Main</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam at consectetur velit. Quisque at diam urna. Maecenas sed tortor eget est sagittis laoreet. Nullam sit amet nibh lorem. Praesent ac diam et magna lobortis ornare. Nulla facilisi. Phasellus mi odio, imperdiet vitae vulputate elementum, bibendum id mauris. Nam quis congue augue. Donec faucibus vestibulum magna, vel scelerisque tortor iaculis id. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
                 <p>Maecenas a nibh lectus, id semper augue. Aenean venenatis tincidunt commodo. Ut convallis ligula et urna ornare ultricies. Donec ut lacinia odio. Praesent vulputate turpis libero. Mauris tincidunt ante arcu. Nulla facilisi. Nullam quis turpis leo, feugiat laoreet lectus. Curabitur massa leo, dignissim id hendrerit nec, aliquam ac massa. Suspendisse potenti. Pellentesque ornare, dui vitae interdum porttitor, leo quam eleifend diam, vitae dictum lacus sapien ut lacus. Integer sed eros arcu.</p>
                 <p>Aenean porttitor pellentesque purus, sed pharetra purus commodo nec. Fusce varius nisi vel enim varius pellentesque. Maecenas vitae enim a orci euismod dictum. Donec at ligula dolor, in sodales diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae diam tortor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Suspendisse consectetur hendrerit mollis.</p>
@@ -158,6 +188,9 @@ $('#news').vScroller({ onScroll: function() {} });
     </div>
     <div id="footer">
         <p><a href="http://github.com/rogeriolino/vscroller/">http://github.com/rogeriolino/vscroller/</a></p>
+    </div>
+    <div id="thanks" class="radius">
+        <p>Thanks for read me!</p>
     </div>
 </body>
 </html>
