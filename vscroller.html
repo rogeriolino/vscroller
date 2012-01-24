@@ -4,14 +4,14 @@
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>vScroller | jQuery Vertical Scroller Plugin</title>
 <meta name="author" content="rogeriolino.com" />
-<meta name="description" content="Vertical Scroller jQuery Plugin" />
+<meta name="description" content="Vertical Scroller Plugin for jQuery 1.7+" />
 <meta name="keywords" content="jquery, plugin, scroller, vscroller, js" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="https://raw.github.com/rogeriolino/vscroller/master/vscroller.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $('#content .scroller').vScroller({ 
+    $('#content .scroller').vScroller({
         height: 300,
         onScroll: function(args) {
             $('#pct').text(Math.round(args.pct) + '%');
@@ -19,7 +19,8 @@ $(document).ready(function() {
     });
     
     $('#sidebar .scroller').vScroller({
-        height: 600,
+        height: 720,
+        barPosition: 'left',
         onScroll: function(args) {
             if (args.pct >= 95) {
                 $('#thanks').show('ease');
@@ -169,25 +170,35 @@ a:hover { text-decoration: underline; }
             </div>
             <span id="pct" style="color: red; float: right">0%</span>
             <div class="block">
-                <h2>Author</h2>
-                <p><a href="http://rogeriolino.com" title="Website">Rogério Alencar Lino Filho</a></p>
-            </div>
-            <div class="block">
                 <h2>Usage</h2>
                 <pre>
-$('#news').vScroller();
+$('#news').vScroller({ 
+    width: 300, 
+    height: 400, 
+    onScroll: function(args) {} 
+});
 
-// defining size
-$('#news').vScroller({ width: 300, height: 400 });
+// option: default value
+width: '100%'
+height: 400
+delta: 5                  (wheel delta)
+barMinOpacity: .3         (mouse out)
+barMaxOpacity: .8         (mouse over)
+barWidth: 6
+barHeight: 40
+barBackground: 'black'    (CSS background)
+barRadius: 8              (CSS border-radius)
+barPosition: 'right'      (right | left)
+onScroll: function(args)  ({ pct [int], y [int] })
 
-// callbacks
-$('#news').vScroller({ onScroll: function() {} });
+// keys support (on mouse over)
+HOME, END, UP, DOWN, PGDOWN, PGUP
                 </pre>
             </div>
         </div>
     </div>
     <div id="footer">
-        <p><a href="http://github.com/rogeriolino/vscroller/">http://github.com/rogeriolino/vscroller/</a></p>
+        <p><a href="http://github.com/rogeriolino/vscroller/" title="Github Project">Github Project</a> | <a href="http://rogeriolino.com" title="Author Website">rogeriolino.com</a></p>
     </div>
     <div id="thanks" class="radius">
         <p>Thanks for read me!</p>
