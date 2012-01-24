@@ -10,10 +10,19 @@
 <script type="text/javascript" src="https://raw.github.com/rogeriolino/vscroller/master/vscroller.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    $('.scroller').vScroller({
+
+    $('#content .scroller').vScroller({ 
         height: 300,
         onScroll: function(args) {
-            if (args.pct > 70) {
+            $('#pct').text(args.pct + '%');
+        }
+    });
+    
+    $('#sidebar .scroller').vScroller({
+        height: 600,
+        onScroll: function(args) {
+            if (args.pct >= 99) {
+                alert('Thanks for read me');
             }
         }
     });
@@ -29,12 +38,22 @@ html,body {
     font-family: Arial, Verdana, sans-serif;
 }
 
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
+
 #header {
+    height: 120px;
     padding: 20px 0;
 }
 
 #header h1 {
-    text-align: center;
+    height: 100px;
+    text-indent: -1000px;
+    margin: 0 auto;
+    overflow: hidden;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url(https://github.com/rogeriolino/vscroller/raw/master/vscroller.png);
 }
 
 #body {
@@ -62,6 +81,26 @@ html,body {
     margin-right: 340px;
 }
 
+#body #content .block {
+    padding: 10px 15px 20px 15px;
+}
+
+#body #content .block h2 {
+    padding: 5px 10px;
+}
+
+#body #content .block p,
+#body #content .block p a {
+    color: #333333;
+    font-size: 0.9em;
+}
+
+#body #content .block pre {
+    padding: 10px;
+    border: 1px solid #999999;
+    background: #f1f1f1;
+}
+
 #footer {
 }
 
@@ -71,17 +110,14 @@ html,body {
 }
 
 #footer p a {
-    color: #000000;
-    text-decoration: none;
+    color: #666666;
 }
 
-#debug { color: red; }
 </style>
 </head>
 <body>
     <div id="header">
-        <h1>vScoller</h1>
-        <span id="debug"></span>
+        <h1>vScroller</h1>
     </div>
     <div id="body">
         <div id="sidebar">
@@ -101,10 +137,27 @@ html,body {
                 <p>Proin eu ligula velit, quis hendrerit elit. Integer eu dolor et mi viverra vulputate et sit amet nulla. Nulla eget eros et justo placerat rutrum at ut est. Suspendisse ut nisl vel magna varius tempus non ut ante. Maecenas non odio non velit mollis tincidunt in at diam. Ut enim mi, commodo non placerat quis, euismod id purus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin tempus commodo mi, nec pharetra nisi faucibus scelerisque. Proin vehicula mi vulputate sem facilisis at sodales ante pretium.</p>
                 <p>Aenean sed nisi urna. Mauris pretium vulputate quam, id vulputate est scelerisque quis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eget sem nunc, at fringilla ante. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mollis adipiscing hendrerit. Nunc tempor, magna vitae viverra venenatis, neque quam dignissim est, ac tempor neque quam et eros. Mauris consectetur nulla quam. Phasellus ante est, volutpat vitae sollicitudin porttitor, fringilla vel dolor. Donec vestibulum iaculis cursus. Ut ut nisi eu felis pretium gravida sit amet sit amet risus. Aenean eros lorem, fringilla ac tempus ut, feugiat hendrerit mauris. Nulla facilisi.</p>
             </div>
-        </div>        
+            <span id="pct" style="color: red; float: right">0%</span>
+            <div class="block">
+                <h2>Author</h2>
+                <p><a href="http://rogeriolino.com" title="Website">Rogério Alencar Lino Filho</a></p>
+            </div>
+            <div class="block">
+                <h2>Usage</h2>
+                <pre>
+$('#news').vScroller();
+
+// defining size
+$('#news').vScroller({ width: 300, height: 400 });
+
+// callbacks
+$('#news').vScroller({ onScroll: function() {} });
+                </pre>
+            </div>
+        </div>
     </div>
     <div id="footer">
-        <p><a href="http://rogeriolino.com">http://rogeriolino.com</a></p>
+        <p><a href="http://github.com/rogeriolino/vscroller/">http://github.com/rogeriolino/vscroller/</a></p>
     </div>
 </body>
 </html>
