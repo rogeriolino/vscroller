@@ -95,26 +95,29 @@
             
             self.target.append(self.bar);
             
-            self.target.on('mousewheel', function(event) {
-                var evt = event.originalEvent;
+            var mouseWheel = function(src, evt) {
+                var evt = evt ? evt : window.event;
                 var delta;
                 
                 if (evt.wheelDelta) {
-		            delta = evt.wheelDelta / 120; 
-		            if (window.opera) {
-		                delta = -delta;
-	                }
-	            } else if (evt.detail) {
-		            delta = -evt.detail / 3;
-	            }
-	            
-	            var y = pxToInt(self.inner.css('top'));
-	            if (!(delta > 0 && y >= 0) && !(delta < 0 && y <= self.maxHeight)) {
-	                y += delta * opts.delta;
-    	            self.scrollTo(y);
-	            }
+                    delta = evt.wheelDelta / 120; 
+                    if (window.opera) {
+                        delta = -delta;
+                    }
+                } else if (evt.detail) {
+                    delta = -evt.detail / 3;
+                }
+                
+                var y = pxToInt(src.inner.css('top'));
+                if (!(delta > 0 && y >= 0) && !(delta < 0 && y <= src.maxHeight)) {
+                    y += delta * opts.delta;
+    	            src.scrollTo(y);
+                }
             	return false;
-            });
+            }
+            
+            self.target.on('mousewheel', function(evt) { mouseWheel(self, evt.originalEvent) });
+            self.target.on('DOMMouseScroll', function(evt) { mouseWheel(self, evt.originalEvent) });
             
             self.scrollTo = function(y) {
                 var pct, innerY, barY;
