@@ -1,6 +1,7 @@
 /**
  * vScroller - Vertical Scroller jQuery Plugin
  * @author rogeriolino http://rogeriolino.com
+ * @version 0.1.0
  */
 (function($) {
     
