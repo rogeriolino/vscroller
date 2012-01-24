@@ -12,6 +12,10 @@
             delta: 5,
             barMinOpacity: .3, 
             barMaxOpacity: .8,
+            barWidth: 5,
+            barHeight: 40,
+            barBackground: 'black',
+            barRadius: 8,
             onScroll: undefined
         };
         
@@ -26,27 +30,34 @@
             self.target = $(this);
             self.target.width(opts.width);
             self.target.height(opts.height);
-            self.target.css('position', 'relative');
-            self.target.css('overflow', 'hidden');
+            self.target.css({
+                position: 'relative',
+                overflow: 'hidden'
+            });
 
             self.inner = $(document.createElement('div'));
             self.inner.addClass('vscroller content');
-            self.inner.css('position', 'relative');
-            self.inner.css('top', '0px');
+            self.inner.css({
+                position: 'relative',
+                top: '0px'
+            });
             self.inner.append(self.target.html());
             
             self.target.text('');
             self.target.append(self.inner);
             
             self.bar = $(document.createElement('div'));
-            self.bar.width(10);
-            self.bar.height(45);
-            self.bar.css('position', 'absolute');
-            self.bar.css('top', '0px');
-            self.bar.css('right', '0px');
-            self.bar.css('background', 'black');
+            self.bar.width(opts.barWidth);
+            self.bar.height(opts.barHeight);
+            self.bar.css({
+                position: 'absolute',
+                top: '0px',
+                right: '2px',
+                borderRadius: opts.barRadius,
+                MozBorderRadius: opts.barRadius,
+                background: opts.barBackground
+            });
             self.bar.fadeTo(0, opts.barMinOpacity);
-            
             
             self.innerHeight = self.inner.height() + opts.delta + 5;
             self.maxHeight = (self.innerHeight - self.target.height()) * -1;
@@ -60,11 +71,15 @@
                 }
             );
             
-            self.target.on('mousemove', function(event) {
+            $(window).on('mousemove', function(event) {
                 if (self.release) {
-                    var y = event.clientY - $(this).offset().top;
-                    y -= y / self.target.height() * self.bar.height();
-                    self.scrollTo(y);
+                    var y1 = self.target.offset().top;
+                    var y2 = self.target.height() + y1;
+                    if (event.clientY >= y1 && event.clientY <= y2) {
+                        var y = event.clientY - y1;
+                        y -= y / self.target.height() * self.bar.height();
+                        self.scrollTo(y);
+                    }
                 }
                 return false;
             });
