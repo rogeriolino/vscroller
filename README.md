@@ -19,3 +19,7 @@ Usage
     });
     
     
+Demo
+---
+
+(http://dev.rogeriolino.com/js/vscroller.html "http://dev.rogeriolino.com/js/vscroller.html")
