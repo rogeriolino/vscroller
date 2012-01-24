@@ -88,6 +88,7 @@
                 self.release = true;
                 return false;
             });
+            
             $(window).on('mouseup', function(event) {
                 self.release = false;
                 return false;
@@ -116,8 +117,8 @@
             	return false;
             }
             
-            self.target.on('mousewheel', function(evt) { mouseWheel(self, evt.originalEvent) });
-            self.target.on('DOMMouseScroll', function(evt) { mouseWheel(self, evt.originalEvent) });
+            self.target.on('mousewheel', function(evt) { return mouseWheel(self, evt.originalEvent) });
+            self.target.on('DOMMouseScroll', function(evt) { return mouseWheel(self, evt.originalEvent) });
             
             self.scrollTo = function(y) {
                 var pct, innerY, barY;
