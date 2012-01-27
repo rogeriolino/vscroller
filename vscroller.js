@@ -136,8 +136,8 @@
                     var delta; // 1 | -1
 
                     if (evt.wheelDelta) {
-                        delta = evt.wheelDelta / 120; 
-                        if (window.opera) {
+                        delta = evt.wheelDelta / 120;
+                        if (window.opera && parseInt(window.opera.version()) < 11) {
                             delta = -delta;
                         }
                     } else if (evt.detail) {
